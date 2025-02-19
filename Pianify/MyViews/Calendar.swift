@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct Calendar: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct MyCalendar: View
+{
+    var body: some View
+    {
+        ZStack
+        {
+            Color.blue
+            
+            Image("Calendar")
+        }
     }
 }
 
 #Preview {
-    Calendar()
+    MyCalendar()
 }
