@@ -45,7 +45,7 @@ struct HomePage: View
                 {
                     ForEach(section == .pending ? pendingTasks: completedTasks)
                     { $task in
-                        Text(task.name)
+                        TaskViewCell(task : $task)
                     }
                 } header:
                 {
@@ -53,6 +53,23 @@ struct HomePage: View
                 }
                     
             }
+        }
+    }
+}
+
+struct TaskViewCell: View
+{
+    @Binding var task: Task
+    var body: some View
+    {
+        HStack
+        {
+            Image(systemName: task.isComplete ? "checkmark.square": "square")
+                .onTapGesture
+                {
+                    task.isComplete.toggle()
+                }
+            Text(task.name)
         }
     }
 }
