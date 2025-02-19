@@ -43,10 +43,27 @@ struct HomePage: View
             { section in
                 Section
                 {
-                    ForEach(section == .pending ? pendingTasks: completedTasks)
+                    let filteredTasks = section == .pending ? pendingTasks: completedTasks
+                    
+                    if filteredTasks.isEmpty
+                    {
+                        Text("No tasks available")
+                            .font(.system(size: 17, weight: .light))
+                            .foregroundColor(.gray)
+                    }
+                    
+                    ForEach(filteredTasks)
                     { $task in
                         TaskViewCell(task : $task)
+                    } .onDelete
+                    { indexSet in
+                        indexSet.forEach
+                        { index in
+                            let deletedTask = filteredTasks[index]
+                            tasks = tasks.filter{$0.id != deletedTask.id}
+                        }
                     }
+                    
                 } header:
                 {
                     Text(section.rawValue)
