@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct Task: Identifiable
+struct DayTask: Identifiable
 {
     let id = UUID()
     let name: String
@@ -23,16 +23,16 @@ enum Sections: String, CaseIterable
 
 struct HomePage: View
 {
-    @State private var tasks = [Task(name: "Play 1 hr", isComplete: true), Task(name: "Practice A major arpeggios")]
+    @State private var daytasks = [DayTask(name: "Play 1 hr", isComplete: true), DayTask(name: "Practice A major arpeggios")]
     
-    var pendingTasks: [Binding<Task>]
+    var pendingTasks: [Binding<DayTask>]
     {
-        $tasks.filter {!$0.isComplete.wrappedValue}
+        $daytasks.filter {!$0.isComplete.wrappedValue}
     }
     
-    var completedTasks: [Binding<Task>]
+    var completedTasks: [Binding<DayTask>]
     {
-        $tasks.filter {$0.isComplete.wrappedValue}
+        $daytasks.filter {$0.isComplete.wrappedValue}
     }
     
     var body: some View
@@ -53,14 +53,14 @@ struct HomePage: View
                     }
                     
                     ForEach(filteredTasks)
-                    { $task in
-                        TaskViewCell(task : $task)
+                    { $daytask in
+                        DayTaskViewCell(daytask : $daytask)
                     } .onDelete
                     { indexSet in
                         indexSet.forEach
                         { index in
                             let deletedTask = filteredTasks[index]
-                            tasks = tasks.filter{$0.id != deletedTask.id}
+                            daytasks = daytasks.filter{$0.id != deletedTask.id}
                         }
                     }
                     
@@ -74,19 +74,19 @@ struct HomePage: View
     }
 }
 
-struct TaskViewCell: View
+struct DayTaskViewCell: View
 {
-    @Binding var task: Task
+    @Binding var daytask: DayTask
     var body: some View
     {
         HStack
         {
-            Image(systemName: task.isComplete ? "checkmark.square": "square")
+            Image(systemName: daytask.isComplete ? "checkmark.square": "square")
                 .onTapGesture
                 {
-                    task.isComplete.toggle()
+                    daytask.isComplete.toggle()
                 }
-            Text(task.name)
+            Text(daytask.name)
         }
     }
 }

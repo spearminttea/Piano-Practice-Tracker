@@ -1,5 +1,5 @@
 //
-//  Timer.swift
+//  MyTimer.swift
 //  Pianify
 //
 //  Created by Sanjana Arunkumar Iyer on 2/18/25.
