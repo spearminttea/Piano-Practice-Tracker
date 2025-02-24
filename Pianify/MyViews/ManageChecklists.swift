@@ -68,6 +68,8 @@ struct ManageChecklists: View
     
     var body: some View
     {
+        
+        
         List
         {
             ForEach(Days.allCases, id: \.self)
@@ -75,28 +77,35 @@ struct ManageChecklists: View
                 section in
                     Section
                     {
+                    
+                        let filteredTasks =
+                            section == .monday ? monTasks:
+                            section == .tuesday ? tueTasks:
+                            section == .wednesday ? wedTasks:
+                            section == .thursday ? thuTasks:
+                            section == .friday ? friTasks:
+                            section == .saturday ? satTasks:
+                        sunTasks;
                         
-                        var filteredTasks = section == .monday ? monTasks : sunTasks
                         
+                        if filteredTasks.isEmpty
+                        {
+                            Text("No tasks available")
+                                .font(.system(size: 17, weight: .light))
+                                .foregroundColor(.gray)
+                        }
                         
-//                        if filteredTasks.isEmpty
-//                        {
-//                            Text("No tasks available")
-//                                .font(.system(size: 17, weight: .light))
-//                                .foregroundColor(.gray)
-//                        }
-//                        
-//                        ForEach(filteredTasks)
-//                        { $alltask in
-//                            AllTaskViewCell(alltasks : $alltasks)
-//                        } .onDelete
-//                        { indexSet in
-//                            indexSet.forEach
-//                            { index in
-//                                let deletedTask = filteredTasks[index]
-//                                alltasks = alltasks.filter{$0.id != deletedTask.id}
-//                            }
-//                        }
+                        ForEach(filteredTasks)
+                        { $alltask in
+                            AllTaskViewCell(allTask : $alltask)
+                        } .onDelete
+                        { indexSet in
+                            indexSet.forEach
+                            { index in
+                                let deletedAllTask = filteredTasks[index]
+                                alltasks = alltasks.filter{$0.id != deletedAllTask.id}
+                            }
+                        }
                         
                     } header:
                     {
@@ -110,13 +119,13 @@ struct ManageChecklists: View
 
 struct AllTaskViewCell: View
 {
-    @Binding var alltask: AllTask
+    @Binding var allTask: AllTask
     var body: some View
     {
         HStack
         {
             Image(systemName: "square")
-            Text(alltask.name)
+            Text(allTask.name)
         }
     }
 }
