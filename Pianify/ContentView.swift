@@ -16,32 +16,32 @@ struct ContentView: View
             HomePage()
                 .tabItem()
                 {
-                    Image("Checklist")
+                    Image("Checklist Icon")
                 }
             Audio()
                 .tabItem()
                 {
-                    Image("Audio")
+                    Image("Audio Icon")
                 }
             Metronome()
                 .tabItem()
                 {
-                    Image("Metronome")
+                    Image("Metronome Icon")
                 }
             MyTimer()
                 .tabItem()
                 {
-                    Image("Timer")
+                    Image("Timer Icon")
                 }
             MyCalendar()
                 .tabItem()
                 {
-                    Image("Calendar")
+                    Image("Calendar Icon")
                 }
             HabitTracker()
                 .tabItem()
                 {
-                    Image("Habit Tracker")
+                    Image("Habit Tracker Icon")
                 }
         }
     }
