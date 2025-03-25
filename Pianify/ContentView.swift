@@ -18,17 +18,12 @@ struct ContentView: View
                 {
                     Image("Checklist Icon")
                 }
-            Audio()
-                .tabItem()
-                {
-                    Image("Audio Icon")
-                }
             Metronome()
                 .tabItem()
                 {
                     Image("Metronome Icon")
                 }
-            MyTimer()
+            TimerView()
                 .tabItem()
                 {
                     Image("Timer Icon")
