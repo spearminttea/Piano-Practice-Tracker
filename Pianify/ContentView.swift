@@ -16,9 +16,9 @@ struct ContentView: View
             HomePage()
                 .tabItem()
                 {
-                    Image("Checklist Icon")
+                    Image("Audio Icon")
                 }
-            Metronome()
+            MetronomeView()
                 .tabItem()
                 {
                     Image("Metronome Icon")

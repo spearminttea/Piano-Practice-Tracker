@@ -1,7 +1,7 @@
 import Foundation
 
 /// UserDefaults keys
-struct Defaults {
+struct MetronomeDefaults {
     static let beatsPerMinute = "beatsPerMinute"
     static let beatsPerMeasure = "beatsPerMeasure"
     static let accentFirstBeatEnabled = "accentFirstBeatEnabled"

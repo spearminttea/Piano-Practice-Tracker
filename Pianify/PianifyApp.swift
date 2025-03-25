@@ -11,6 +11,11 @@ import SwiftData
 @main
 struct PianifyApp: App
 {
+    init()
+    {
+        MetronomeDefaults.registerDefaults()
+    }
+    
     var body: some Scene
     {
         WindowGroup
